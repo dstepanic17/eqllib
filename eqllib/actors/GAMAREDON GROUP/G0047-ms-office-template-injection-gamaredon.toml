@@ -17,7 +17,6 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 query = '''
 sequence by unique_pid
   [process where process_name in ("winword.exe", "excel.exe", "powerpnt.exe")]
-  [network where event of
-    [dns where wildcard(query_name, "*.ddns.net", "*.hopto.org")]]
+  [dns where wildcard(query_name, "*.ddns.net", "*.hopto.org","bounceme.net")]
 | unique unique_pid
 '''
