@@ -16,9 +16,7 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 [analytic]
 query = '''
 file where subtype.create
-  and (
-    file_path == "*\\Programs\\Startup\\*.lnk" or
-    file_path == "*\\Programs\\Startup\\*.vbs"
-    )
+  and (file_path == "*\\Programs\\Startup\\*.lnk" or
+       file_path == "*\\Programs\\Startup\\*.vbs")
 | unique process_name, file_path, user_name
 '''
