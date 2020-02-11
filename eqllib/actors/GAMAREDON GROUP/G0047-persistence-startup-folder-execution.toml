@@ -15,7 +15,7 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 
 [analytic]
 query = '''
-sequence with maxspan=90d
+sequence by user_name with maxspan=90d
   [file where subtype.create and file_path == "*\\Programs\\Startup\\*.vbs"]
   [process where subtype.create and process_name == "userinit.exe"]
   [process where subtype.create and parent_process_name=="explorer.exe"
