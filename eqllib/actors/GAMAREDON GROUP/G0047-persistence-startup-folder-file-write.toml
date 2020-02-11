@@ -15,7 +15,8 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 
 [analytic]
 query = '''
-file where subtype.create
+file where subtype.create 
+  and process_name in ("powershell.exe", "wscript.exe", "cscript.exe", "cmd.exe", "winword.exe", "excel.exe", "powerpnt.exe")
   and (file_path == "*\\Programs\\Startup\\*.lnk" or
        file_path == "*\\Programs\\Startup\\*.vbs")
 | unique process_name, file_path, user_name
