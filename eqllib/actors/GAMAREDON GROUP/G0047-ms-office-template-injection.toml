@@ -3,9 +3,9 @@ categories = ["detect"]
 confidence = "low"
 contributors = ["Daniel Stepanic"]
 created_date = "02/12/2020"
-description = "Microsoft's Open Office XML (OOXML) specification defines an XML-based format for Office documents. Adversaries may abuse this technology using SMB to initially conceal malicious code to be executed via documents."
+description = "Microsoft's Open Office XML (OOXML) specification defines an XML-based format for Office documents. Adversaries may abuse this technology to initially conceal malicious code to be executed via documents."
 id = "bba65411-cf61-4d7c-a9a8-a2021684e9ca"
-name = "MS Office Template Injection (SMB)"
+name = "MS Office Template Injection"
 os = ["windows"]
 tactics = ["Defense Evasion"]
 tags = ["Gamaredon Group"]
@@ -17,6 +17,7 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 query = '''
 sequence by unique_pid
   [process where process_name in ("winword.exe", "excel.exe", "powerpnt.exe")]
-  [network where destination_port == 445]
-| unique destination_address destination_port
+  [dns where not wildcard(query_name, "*.microsoft.com", "*.skype.com")
+  [network where true]
+| unique unique_pid
 '''
