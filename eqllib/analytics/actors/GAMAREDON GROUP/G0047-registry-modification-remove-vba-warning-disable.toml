@@ -17,8 +17,7 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 query = '''
 sequence by unique_pid
   [process where process_name in ("winword.exe", "excel.exe", "powerpnt.exe")]
-  [registry where registry_data == 1 and wildcard(registry_path,
-    "*\\Software\\Microsoft\\Office\\*\\Word\\Security\\AccessVBOM",
-    "*\\Software\\Microsoft\\Office\\*\\Word\\Security\\VBAWarnings")]
+  [registry where wildcard(registry_path, "*\\Software\\Microsoft\\Office\\*\\Word\\Security\\AccessVBOM",
+                                          "*\\Software\\Microsoft\\Office\\*\\Word\\Security\\VBAWarnings")]
 | unique unique_pid
 '''
