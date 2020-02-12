@@ -19,5 +19,4 @@ sequence by unique_pid
   [process where process_name in ("winword.exe", "excel.exe", "powerpnt.exe")]
   [dns where not wildcard(query_name, "*.microsoft.com", "*.skype.com")]
   [network where true]
-| unique unique_pid
 '''
