@@ -15,7 +15,7 @@ references = ["https://www.elastic.co/blog/playing-defense-against-gamaredon-gro
 
 [analytic]
 query = '''
-dns where wildcard(query_name, "*.ddns.net", "*.hopto.org") and
+dns where wildcard(query_name, "*.ddns.net", "*.hopto.org", "*.bounceme.net") and
   process_name not in ("chrome.exe","iexplore.exe", "firefox.exe")
 | unique unique_pid
 '''
